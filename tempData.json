@@ -1,0 +1,67 @@
+{
+    "armor": [ 
+        {
+            "name": "Darke Knight Set"
+        },
+        {
+            "name": "Beast Champion Set"
+        },
+        {
+            "name": "Malformed Dragon Set"
+        }
+    ],
+
+    "weapons": [
+        {
+            "name": "Devourers Cerpter"
+        }
+    ],
+
+    "Shields": [
+        {
+            "name": "Dragon Towershield"
+        },
+        {
+            "name": "Beastman's Jar-Sheld"
+        }
+    ],
+
+    "Spells": [
+        {
+            "name": "Golden Lightining"
+        }
+    ],
+
+    "Bell Berings": [
+        {
+            "name": "Bernahl's"
+        },
+        {
+            "name": "Somberstone Miner's[5]"
+        },
+        {
+            "name": "Smithing-Stone Miner's[4] "
+        },
+        {
+            "name": "Somberstone Miner's[4]"
+        },
+        {
+            "name": "Gloverwort Picker's[3]"
+        }
+    ],
+
+    "Talismans": [
+        {
+            "name": "Old Lord's"
+        },
+        {
+            "name": "Boltdrake"
+        },
+        {
+            "name": "Dragoncrest Shield"    
+        },
+        {
+            "name": "Shard of Alexander"
+        }
+    ]
+}

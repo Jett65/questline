@@ -38,15 +38,8 @@ func main() {
 
     api := app.Group("/api") 
     v1 := api.Group("/v1")
-
-    v1.Get("/test", func(c *fiber.Ctx) error {
-        test, err := apiCfg.DB.GetTest(c.Context())    
-        if err != nil { 
-            return c.Status(http.StatusBadRequest).SendString(fmt.Sprintf("%v", err))
-        }
-
-        return c.Status(http.StatusOK).SendString(test)
-    })
+ 
+    
 
     log.Fatal(app.Listen(":3006"))
 }
