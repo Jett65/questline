@@ -4,8 +4,15 @@
 
 package database
 
-import ()
+import (
+	"database/sql"
 
-type Test struct {
-	Name string
+	"github.com/google/uuid"
+)
+
+type CatalogGame struct {
+	ID          uuid.UUID
+	Name        string
+	Description sql.NullString
+	Imageurl    sql.NullString
 }

@@ -2,9 +2,7 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
-	"net/http"
 	"os"
 
 	"github.com/Jett65/questline/APIs/gameAPI/internal/database"
@@ -38,8 +36,12 @@ func main() {
 
     api := app.Group("/api") 
     v1 := api.Group("/v1")
- 
-    
+
+    v1.Get("/health", func(c *fiber.Ctx) error {
+        return c.SendString("It's Up")
+    })
+
+    v1.Post("/catalog_game", apiCfg.handlerCreateCatalogGame)
 
     log.Fatal(app.Listen(":3006"))
 }

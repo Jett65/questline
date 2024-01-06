@@ -2,9 +2,9 @@
 
 CREATE TABLE catalog_games (
     id UUID PRIMARY KEY,
-    name VARCHAR, 
+    name VARCHAR NOT NULL, 
     description VARCHAR(100),
-    image TEXT
+    imageURL TEXT 
 );
 
 -- +goose Down
