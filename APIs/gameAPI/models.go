@@ -21,16 +21,16 @@ func databaseCatalogGameToCatalogGame(dbCatalogGame database.CatalogGame) (Catal
 	}, nil
 }
 
-func databaseBatalogGamesToCatalogGames(dbCatalogGames []database.CatalogGame) ([]CatalogGame, error) {
-    games := []CatalogGame{}
-    for _, game := range dbCatalogGames {
-        dbGame, err := databaseCatalogGameToCatalogGame(game)
-        if err != nil {
-            return games, err
-        }
+func databaseCatalogGamesToCatalogGames(dbCatalogGames []database.CatalogGame) ([]CatalogGame, error) {
+	games := []CatalogGame{}
+	for _, game := range dbCatalogGames {
+		dbGame, err := databaseCatalogGameToCatalogGame(game)
+		if err != nil {
+			return games, err
+		}
 
-        games = append(games, dbGame)
-    }
+		games = append(games, dbGame)
+	}
 
-    return games, nil
+	return games, nil
 }

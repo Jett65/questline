@@ -48,12 +48,12 @@ func (apiCfg *apiconfig) handlerCreateCatalogGame(c *fiber.Ctx) error {
 		Imageurl:    isNullImg,
 	})
 	if err != nil {
-        return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("failed to create catalog game: %e", err))
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("failed to create catalog game: %e", err))
 	}
 
 	payload, err := databaseCatalogGameToCatalogGame(catalogGame)
 	if err != nil {
-        return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf( "failed to parse data: %e", err))
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("failed to parse data: %e", err))
 	}
 
 	return c.JSON(payload)
@@ -62,3 +62,17 @@ func (apiCfg *apiconfig) handlerCreateCatalogGame(c *fiber.Ctx) error {
 // func (apiCfg *apiconfig) handlerCreateCatalogGame(c *fiber.Ctx) error {
 //     return c.SendString("it worked")
 // }
+
+func (apiCfg *apiconfig) handlerGetAllCatalogGames(c *fiber.Ctx) error {
+	catalogGames, err := apiCfg.DB.GetAllCatalogGames(c.Context())
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("failed to fetch catalog games: %e", err))
+	}
+
+	payload, err := databaseCatalogGamesToCatalogGames(catalogGames)
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("failed to convert catalog games: %e", err))
+	}
+
+	return c.JSON(payload)
+}

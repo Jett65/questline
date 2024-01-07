@@ -12,36 +12,37 @@ import (
 )
 
 type apiconfig struct {
-    DB *database.Queries
+	DB *database.Queries
 }
 
-func main() {    
-    godotenv.Load(".env")
+func main() {
+	godotenv.Load(".env")
 
-    dbURL := os.Getenv("DATABASE_URL")
-    if dbURL == "" {
-        log.Fatal("DATABASE_URL is not found in the environment")
-    }
+	dbURL := os.Getenv("DATABASE_URL")
+	if dbURL == "" {
+		log.Fatal("DATABASE_URL is not found in the environment")
+	}
 
-    conn, err := sql.Open("postgres", dbURL)
-    if err != nil {
-        log.Fatal("Can't connect to database")
-    }
+	conn, err := sql.Open("postgres", dbURL)
+	if err != nil {
+		log.Fatal("Can't connect to database")
+	}
 
-    apiCfg := apiconfig {
-        DB: database.New(conn),
-    }
+	apiCfg := apiconfig{
+		DB: database.New(conn),
+	}
 
-    app := fiber.New()
+	app := fiber.New()
 
-    api := app.Group("/api") 
-    v1 := api.Group("/v1")
+	api := app.Group("/api")
+	v1 := api.Group("/v1")
 
-    v1.Get("/health", func(c *fiber.Ctx) error {
-        return c.SendString("It's Up")
-    })
+	v1.Get("/health", func(c *fiber.Ctx) error {
+		return c.SendString("It's Up")
+	})
 
-    v1.Post("/catalog_game", apiCfg.handlerCreateCatalogGame)
+	v1.Post("/catalog_game", apiCfg.handlerCreateCatalogGame)
+	v1.Get("/catalog_game", apiCfg.handlerGetAllCatalogGames)
 
-    log.Fatal(app.Listen(":3006"))
+	log.Fatal(app.Listen(":3006"))
 }
