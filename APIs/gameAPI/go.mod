@@ -1,6 +1,6 @@
 module github.com/Jett65/questline/APIs/gameAPI
 
-go 1.21.1
+go 1.21.5
 
 require (
 	github.com/gofiber/fiber/v2 v2.51.0
