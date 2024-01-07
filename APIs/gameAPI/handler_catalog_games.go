@@ -34,10 +34,10 @@ func (apiCfg *apiconfig) handlerCreateCatalogGame(c *fiber.Ctx) error {
 	}
 
 	if game.Description == "" {
-		isNullImg.String = game.Description
+		isNullImg.String = game.ImageURL
 		isNullImg.Valid = false
 	} else {
-		isNullImg.String = game.Description
+		isNullImg.String = game.ImageURL
 		isNullImg.Valid = true
 	}
 
@@ -58,10 +58,6 @@ func (apiCfg *apiconfig) handlerCreateCatalogGame(c *fiber.Ctx) error {
 
 	return c.JSON(payload)
 }
-
-// func (apiCfg *apiconfig) handlerCreateCatalogGame(c *fiber.Ctx) error {
-//     return c.SendString("it worked")
-// }
 
 func (apiCfg *apiconfig) handlerGetAllCatalogGames(c *fiber.Ctx) error {
 	catalogGames, err := apiCfg.DB.GetAllCatalogGames(c.Context())
