@@ -43,6 +43,11 @@ func main() {
 
 	v1.Post("/catalog_game", apiCfg.handlerCreateCatalogGame)
 	v1.Get("/catalog_game", apiCfg.handlerGetAllCatalogGames)
+	// v1.Get("/catalog_game/:id", func(c *fiber.Ctx) error {
+	// 	return c.SendString(c.Params("id"))
+	// })
+	v1.Get("/catalog_game/:id", apiCfg.handlerGetCatalogGameById)
+	v1.Delete("/catalog_game/:id", apiCfg.handlerDeleteCatalogGameById)
 
 	log.Fatal(app.Listen(":3006"))
 }

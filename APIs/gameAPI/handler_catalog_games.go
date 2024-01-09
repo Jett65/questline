@@ -72,3 +72,36 @@ func (apiCfg *apiconfig) handlerGetAllCatalogGames(c *fiber.Ctx) error {
 
 	return c.JSON(payload)
 }
+
+func (apiCfg *apiconfig) handlerGetCatalogGameById(c *fiber.Ctx) error {
+	gameId, err := uuid.Parse(c.Params("id"))
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("::::Not a valid ID:::: %e", err))
+	}
+
+	catalogGame, err := apiCfg.DB.GetCatalogGameById(c.Context(), gameId)
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("::::Could not find game with that id:::: %e", err))
+	}
+
+	payload, err := databaseCatalogGameToCatalogGame(catalogGame)
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("::::Could not convert game:::: %e", err))
+	}
+
+	return c.JSON(payload)
+}
+
+func (apiCfg *apiconfig) handlerDeleteCatalogGameById(c *fiber.Ctx) error {
+	gameId, err := uuid.Parse(c.Params("id"))
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("::::Not a valid ID:::: %e", err))
+	}
+
+	err = apiCfg.DB.DeleteCatalogGame(c.Context(), gameId)
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("::::Could not delete game with that id:::: %e", err))
+	}
+
+	return nil
+}
