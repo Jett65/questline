@@ -6,6 +6,9 @@ RETURNING *;
 -- name: GetTask :many
 SELECT * FROM tasks;
 
+-- name: GetTaskByGameId :many
+SELECT * FROM tasks WHERE game_id=$1;
+
 -- name: GetTaskById :one
 SELECT * FROM tasks WHERE id=$1;
 
