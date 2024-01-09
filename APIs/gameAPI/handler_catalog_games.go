@@ -9,26 +9,26 @@ import (
 )
 
 func (apiCfg *apiconfig) handlerCreateCatalogGame(c *fiber.Ctx) error {
-	
+
 	game := new(CatalogGame)
 
 	err := c.BodyParser(game)
 	if err != nil {
 		//TODO: Add error message to this error
-		return err
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("::::Failed to parse body::: %e", err))
 	}
- 
-    convCatalogGame, err := catalogGameToDatabeseCatalogGame(game)
-    if err != nil {
-        return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("failed to parse body: %e", err))
-    }
+
+	convCatalogGame, err := catalogGameToDatabeseCatalogGame(game)
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("failed to convert body: %e", err))
+	}
 
 	catalogGame, err := apiCfg.DB.CreateCatalogGame(c.Context(), database.CreateCatalogGameParams{
-        ID: uuid.New(),
-        Name: game.Name,
-        Description: convCatalogGame.Description,
-        Imageurl: convCatalogGame.Imageurl,
-    })
+		ID:          uuid.New(),
+		Name:        game.Name,
+		Description: convCatalogGame.Description,
+		Imageurl:    convCatalogGame.Imageurl,
+	})
 	if err != nil {
 		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("failed to create catalog game: %e", err))
 	}
@@ -66,27 +66,27 @@ func (apiCfg *apiconfig) handlerUpdateCatalogGame(c *fiber.Ctx) error {
 	err = c.BodyParser(game)
 	if err != nil {
 		//TODO: Add error message to this error
-		return err
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("::::Failed to parse body::: %e", err))
 	}
- 
-    convCatalogGame, err := catalogGameToDatabeseCatalogGame(game)
-    if err != nil {
-        return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("failed to parse body: %e", err))
-    }
+
+	convCatalogGame, err := catalogGameToDatabeseCatalogGame(game)
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("failed to convert body into DB Format: %e", err))
+	}
 
 	upGame, err := apiCfg.DB.UpdateCatalogGame(c.Context(), database.UpdateCatalogGameParams{
-        ID: game_id,
-        Name: convCatalogGame.Name,
-        Description: convCatalogGame.Description,
-        Imageurl: convCatalogGame.Imageurl,
-    })
+		ID:          game_id,
+		Name:        convCatalogGame.Name,
+		Description: convCatalogGame.Description,
+		Imageurl:    convCatalogGame.Imageurl,
+	})
 
-    payload, err := databaseCatalogGameToCatalogGame(upGame)
-    if err != nil {
-        return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("failed to convert catalog game: %e", err))
-    }
+	payload, err := databaseCatalogGameToCatalogGame(upGame)
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("failed to convert catalog game: %e", err))
+	}
 
-    return c.JSON(payload)
+	return c.JSON(payload)
 
 }
 

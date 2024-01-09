@@ -41,11 +41,20 @@ func main() {
 		return c.SendString("It's Up")
 	})
 
+	// Catalog Game Routes
 	v1.Post("/catalog_game", apiCfg.handlerCreateCatalogGame)
 	v1.Get("/catalog_game", apiCfg.handlerGetAllCatalogGames)
 	v1.Get("/catalog_game/:id", apiCfg.handlerGetCatalogGameById)
-    v1.Put("/catalog_game/:id", apiCfg.handlerUpdateCatalogGame)
+	v1.Put("/catalog_game/:id", apiCfg.handlerUpdateCatalogGame)
 	v1.Delete("/catalog_game/:id", apiCfg.handlerDeleteCatalogGameById)
+
+	// Tasks Routes
+	v1.Post("/tasks")
+	v1.Get("/tasks")
+	v1.Get("/tasks/:id")
+	v1.Put("/tasks/:id")
+	v1.Delete("/tasks/:id")
+	v1.Get("/:gameid/tasks")
 
 	log.Fatal(app.Listen(":3006"))
 }
