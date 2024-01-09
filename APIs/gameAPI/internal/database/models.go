@@ -20,5 +20,5 @@ type CatalogGame struct {
 type Task struct {
 	ID          uuid.UUID
 	Description sql.NullString
-	GameID      uuid.NullUUID
+	GameID      uuid.UUID
 }

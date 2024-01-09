@@ -21,7 +21,7 @@ RETURNING id, description, game_id
 type CreateTaskParams struct {
 	ID          uuid.UUID
 	Description sql.NullString
-	GameID      uuid.NullUUID
+	GameID      uuid.UUID
 }
 
 func (q *Queries) CreateTask(ctx context.Context, arg CreateTaskParams) (Task, error) {
@@ -87,7 +87,7 @@ RETURNING id, description, game_id
 type UpdateTaskParams struct {
 	ID          uuid.UUID
 	Description sql.NullString
-	GameID      uuid.NullUUID
+	GameID      uuid.UUID
 }
 
 func (q *Queries) UpdateTask(ctx context.Context, arg UpdateTaskParams) (Task, error) {
