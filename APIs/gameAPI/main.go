@@ -43,6 +43,7 @@ func main() {
 
 	v1.Post("/catalog_game", apiCfg.handlerCreateCatalogGame)
 	v1.Get("/catalog_game", apiCfg.handlerGetAllCatalogGames)
+    v1.Put("/catalog_game/:id", apiCfg.handlerUpdateCatalogGame)
 
 	log.Fatal(app.Listen(":3006"))
 }

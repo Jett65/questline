@@ -1,6 +1,8 @@
 package main
 
 import (
+	"database/sql"
+
 	"github.com/Jett65/questline/APIs/gameAPI/internal/database"
 	"github.com/google/uuid"
 )
@@ -33,4 +35,32 @@ func databaseCatalogGamesToCatalogGames(dbCatalogGames []database.CatalogGame) (
 	}
 
 	return games, nil
+}
+
+func catalogGameToDatabeseCatalogGame(catalogGmae *CatalogGame) (database.CatalogGame, error) {
+	var isNullDes sql.NullString
+	var isNullImg sql.NullString
+
+	if catalogGmae.Description == "" {
+		isNullDes.String = catalogGmae.Description
+		isNullDes.Valid = false
+	} else {
+		isNullDes.String = catalogGmae.Description
+		isNullDes.Valid = true
+	}
+
+	if catalogGmae.ImageURL == "" {
+		isNullImg.String = catalogGmae.ImageURL
+		isNullImg.Valid = false
+	} else {
+		isNullImg.String = catalogGmae.ImageURL
+		isNullImg.Valid = true
+	}
+
+	return database.CatalogGame{
+		ID:          catalogGmae.ID,
+		Name:        catalogGmae.Name,
+		Description: isNullDes,
+		Imageurl:    isNullImg,
+	}, nil
 }

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 
 	"github.com/Jett65/questline/APIs/gameAPI/internal/database"
@@ -10,43 +9,21 @@ import (
 )
 
 func (apiCfg *apiconfig) handlerCreateCatalogGame(c *fiber.Ctx) error {
-	// Used to convert description and imageUrl from
-	// string to sql.NullString
-	// an sql.NullString is what sqlc uses to handle nullable values
-	// for more info here is the link https://pkg.go.dev/database/sql#NullString
-	var isNullDes sql.NullString
-	var isNullImg sql.NullString
-
+	
 	game := new(CatalogGame)
 
 	err := c.BodyParser(game)
 	if err != nil {
+		//TODO: Add error message to this error
 		return err
 	}
+ 
+    convCatalogGame, err := catalogGameToDatabeseCatalogGame(game)
+    if err != nil {
+        return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("failed to parse body: %e", err))
+    }
 
-	// converts strings to sqlNullStrings
-	if game.Description == "" {
-		isNullDes.String = game.Description
-		isNullDes.Valid = false
-	} else {
-		isNullDes.String = game.Description
-		isNullDes.Valid = true
-	}
-
-	if game.Description == "" {
-		isNullImg.String = game.ImageURL
-		isNullImg.Valid = false
-	} else {
-		isNullImg.String = game.ImageURL
-		isNullImg.Valid = true
-	}
-
-	catalogGame, err := apiCfg.DB.CreateCatalogGame(c.Context(), database.CreateCatalogGameParams{
-		ID:          uuid.New(),
-		Name:        game.Name,
-		Description: isNullDes,
-		Imageurl:    isNullImg,
-	})
+	catalogGame, err := apiCfg.DB.CreateCatalogGame(c.Context(), database.CreateCatalogGameParams(convCatalogGame))
 	if err != nil {
 		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("failed to create catalog game: %e", err))
 	}
@@ -71,4 +48,38 @@ func (apiCfg *apiconfig) handlerGetAllCatalogGames(c *fiber.Ctx) error {
 	}
 
 	return c.JSON(payload)
+}
+
+func (apiCfg *apiconfig) handlerUpdateCatalogGame(c *fiber.Ctx) error {
+	game_id, err := uuid.Parse(c.Params("id"))
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("failed to parse id: %v", err))
+	}
+
+	game := new(CatalogGame)
+
+	err = c.BodyParser(game)
+	if err != nil {
+		//TODO: Add error message to this error
+		return err
+	}
+ 
+    convCatalogGame, err := catalogGameToDatabeseCatalogGame(game)
+    if err != nil {
+        return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("failed to parse body: %e", err))
+    }
+
+	upGame, err := apiCfg.DB.UpdateCatalogGame(c.Context(), database.UpdateCatalogGameParams{
+        ID: game_id,
+        Name: convCatalogGame.Name,
+        Description: convCatalogGame.Description,
+        Imageurl: convCatalogGame.Imageurl,
+    })
+
+    payload, err := databaseCatalogGameToCatalogGame(upGame)
+    if err != nil {
+        return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("failed to convert catalog game: %e", err))
+    }
+
+    return c.JSON(payload)
 }
