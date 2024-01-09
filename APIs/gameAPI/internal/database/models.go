@@ -16,3 +16,9 @@ type CatalogGame struct {
 	Description sql.NullString
 	Imageurl    sql.NullString
 }
+
+type Task struct {
+	ID          uuid.UUID
+	Description sql.NullString
+	GameID      uuid.NullUUID
+}

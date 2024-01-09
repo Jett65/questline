@@ -14,7 +14,7 @@ import (
 
 const createCatalogGame = `-- name: CreateCatalogGame :one
 INSERT INTO catalog_games (id, name, description, imageURL)
-values ($1, $2, $3, $4)
+VALUES ($1, $2, $3, $4)
 RETURNING id, name, description, imageurl
 `
 
