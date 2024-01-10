@@ -47,19 +47,18 @@ func catalogGameToDatabeseCatalogGame(catalogGmae *CatalogGame) (database.Catalo
 
 // Tasks
 type Task struct {
-    ID uuid.UUID
-    Description string
-    Game_id uuid.UUID
+	ID          uuid.UUID
+	Description string
+	Game_id     uuid.UUID
 }
 
 func databaseTaskToTask(dbTask database.Task) (Task, error) {
 	return Task{
 		ID:          dbTask.ID,
 		Description: dbTask.Description.String,
-        Game_id: dbTask.ID,
+		Game_id:     dbTask.GameID,
 	}, nil
 }
-
 
 func databasetasksToTasks(dbTasks []database.Task) ([]Task, error) {
 	tasks := []Task{}
@@ -76,9 +75,9 @@ func databasetasksToTasks(dbTasks []database.Task) ([]Task, error) {
 }
 
 func taskToDatabaseTask(task Task) (database.Task, error) {
-    return database.Task{
-        ID: task.ID,
-        Description: ToNullString(task.Description),
-        GameID: task.Game_id,
-    }, nil
+	return database.Task{
+		ID:          task.ID,
+		Description: ToNullString(task.Description),
+		GameID:      task.Game_id,
+	}, nil
 }

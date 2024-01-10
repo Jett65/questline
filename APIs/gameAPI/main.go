@@ -49,11 +49,11 @@ func main() {
 	v1.Delete("/catalog_game/:id", apiCfg.handlerDeleteCatalogGameById)
 
 	// Tasks Routes
-	// v1.Post("/tasks")
+	v1.Post("/tasks", apiCfg.handlerCreateTask)
 	v1.Get("/tasks", apiCfg.handlerGetAllTasks)
-	// v1.Get("/tasks/:id")
+	v1.Get("/tasks/:id", apiCfg.handlerGetTaskById)
 	// v1.Put("/tasks/:id")
-	// v1.Delete("/tasks/:id")
+	v1.Delete("/tasks/:id", apiCfg.handlerDeleteTaskById)
 	// v1.Get("/:gameid/tasks")
 
 	log.Fatal(app.Listen(":3006"))
