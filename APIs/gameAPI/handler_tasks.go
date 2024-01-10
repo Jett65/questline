@@ -73,16 +73,32 @@ func (apiCfg *apiconfig) handlerGetTaskById(c *fiber.Ctx) error {
 }
 
 func (apiCfg *apiconfig) handlerUpdateTaskById(c *fiber.Ctx) error {
-	// task_id, err := uuid.Parse(c.Params("id"))
-	// if err != nil {
-	// 	return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("::::Not a valid ID:::: %e", err))
-	// }
+	task_id, err := uuid.Parse(c.Params("id"))
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("::::Not a valid ID:::: %e", err))
+	}
 
-	// task, err := apiCfg.DB.UpdateTask(c.Context(), task_id)
-	// if err != nil {
-	// 	return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("::::Failed to Update Tasks:::: %e", err))
-	// }
-	return nil
+	task := new(Task)
+
+	err = c.BodyParser(task)
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("::::Could not Parse Task to Update:::: %e", err))
+	}
+
+	Uptask, err := apiCfg.DB.UpdateTask(c.Context(), database.UpdateTaskParams{
+		ID:          task_id,
+		Description: ToNullString(task.Description),
+		GameID:      task.Game_id,
+	})
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("::::Could not Update Task:::: %e", err))
+	}
+
+	payload, err := databaseTaskToTask(Uptask)
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("::::Could not Convert Task:::: %e", err))
+	}
+	return c.JSON(payload)
 }
 
 func (apiCfg *apiconfig) handlerDeleteTaskById(c *fiber.Ctx) error {

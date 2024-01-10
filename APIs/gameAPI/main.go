@@ -52,9 +52,9 @@ func main() {
 	v1.Post("/tasks", apiCfg.handlerCreateTask)
 	v1.Get("/tasks", apiCfg.handlerGetAllTasks)
 	v1.Get("/tasks/:id", apiCfg.handlerGetTaskById)
-	// v1.Put("/tasks/:id")
+	v1.Put("/tasks/:id", apiCfg.handlerUpdateTaskById)
 	v1.Delete("/tasks/:id", apiCfg.handlerDeleteTaskById)
-	// v1.Get("/:gameid/tasks")
+	v1.Get("/:gameid/tasks", apiCfg.handlerGetTasksByCatalogGameId)
 
 	log.Fatal(app.Listen(":3006"))
 }
