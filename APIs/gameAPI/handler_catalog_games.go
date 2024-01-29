@@ -14,20 +14,14 @@ func (apiCfg *apiconfig) handlerCreateCatalogGame(c *fiber.Ctx) error {
 
 	err := c.BodyParser(game)
 	if err != nil {
-		//TODO: Add error message to this error
 		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("::::Failed to parse body::: %e", err))
-	}
-
-	convCatalogGame, err := catalogGameToDatabeseCatalogGame(game)
-	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("failed to convert body: %e", err))
 	}
 
 	catalogGame, err := apiCfg.DB.CreateCatalogGame(c.Context(), database.CreateCatalogGameParams{
 		ID:          uuid.New(),
 		Name:        game.Name,
-		Description: convCatalogGame.Description,
-		Imageurl:    convCatalogGame.Imageurl,
+		Description: ToNullString(game.Description),
+		Imageurl:    ToNullString(game.ImageURL),
 	})
 	if err != nil {
 		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("failed to create catalog game: %e", err))

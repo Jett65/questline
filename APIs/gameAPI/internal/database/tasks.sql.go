@@ -71,7 +71,7 @@ const getTaskByGameId = `-- name: GetTaskByGameId :many
 SELECT id, description, game_id FROM tasks WHERE game_id=$1
 `
 
-func (q *Queries) GetTaskByGameId(ctx context.Context, gameID uuid.NullUUID) ([]Task, error) {
+func (q *Queries) GetTaskByGameId(ctx context.Context, gameID uuid.UUID) ([]Task, error) {
 	rows, err := q.db.QueryContext(ctx, getTaskByGameId, gameID)
 	if err != nil {
 		return nil, err
