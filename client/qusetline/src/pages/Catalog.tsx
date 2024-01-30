@@ -1,11 +1,11 @@
 import React from "react"
 import { useEffect, useState } from "react"
 
-function Catalog({apiLink}) {
+function Catalog() {
   const [games, setGames] = useState([]);
 
   useEffect(() => {
-    fetchGames()
+    // fetchGames()
   }, [])
 
   async function fetchGames () {
@@ -15,7 +15,6 @@ function Catalog({apiLink}) {
     const result = await response.json()
 
     console.log(result)
-
     setGames(result)
   }
 
@@ -28,6 +27,7 @@ function Catalog({apiLink}) {
       {/* {games.map((game) => (
         <div key={game.id}></div>
       ))} */}
+      <button onClick={fetchGames}>Click me For games</button>
     </div>
   </div>
   )
