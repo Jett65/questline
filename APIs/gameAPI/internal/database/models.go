@@ -22,3 +22,10 @@ type Task struct {
 	Description sql.NullString
 	GameID      uuid.UUID
 }
+
+type User struct {
+	ID       uuid.UUID
+	Username string
+	Email    string
+	Password string
+}

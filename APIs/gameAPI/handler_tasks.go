@@ -11,7 +11,7 @@ import (
 func (apiCfg *apiconfig) handlerCreateTask(c *fiber.Ctx) error {
 	task := new(Task)
 
-	err := c.BodyParser(task)
+	err := c.BodyParser(&task)
 	if err != nil {
 		return fiber.NewError(fiber.StatusBadRequest, fmt.Sprintf("::::Failed to parse body::: %e", err))
 	}
