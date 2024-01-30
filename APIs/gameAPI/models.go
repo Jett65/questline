@@ -47,9 +47,9 @@ func catalogGameToDatabeseCatalogGame(catalogGmae *CatalogGame) (database.Catalo
 
 // Tasks
 type Task struct {
-	ID          uuid.UUID
-	Description string
-	Game_id     uuid.UUID
+	ID          uuid.UUID `json:"id"`
+	Description string    `json:"description"`
+	Game_id     uuid.UUID `json:"game_id"`
 }
 
 func databaseTaskToTask(dbTask database.Task) (Task, error) {
@@ -80,4 +80,38 @@ func taskToDatabaseTask(task Task) (database.Task, error) {
 		Description: ToNullString(task.Description),
 		GameID:      task.Game_id,
 	}, nil
+}
+
+// Users
+type User struct {
+	ID       uuid.UUID `json:"id"`
+	Username string    `json:"username"`
+	Email    string    `json:"email"`
+	Password string    `json:"password"`
+}
+
+//TODO: Create email validation
+
+func databaseUserToUser(dbUser database.User) (User, error) {
+	return User{
+		ID:       dbUser.ID,
+		Username: dbUser.Username,
+		Email:    dbUser.Email,
+		Password: dbUser.Password,
+	}, nil
+}
+
+func databaseUsersToUsers(dbUsers []database.User) ([]User, error) {
+	users := []User{}
+
+	for _, user := range dbUsers {
+		dbUser, err := databaseUserToUser(user)
+		if err != nil {
+			return users, err
+		}
+
+		users = append(users, dbUser)
+	}
+
+	return users, nil
 }
