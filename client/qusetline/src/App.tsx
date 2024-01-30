@@ -1,8 +1,8 @@
 // import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
-import Catalog from './Pages/Catalog.tsx'
-import NavBar from './Components/NavBar.tsx'
+import Catalog from './pages/Catalog.tsx'
+import NavBar from './components/NavBar.tsx'
 
 function App() {
 
@@ -10,7 +10,7 @@ function App() {
   <>
     <NavBar/>
     <Routes>
-      <Route path='/games-catalog' element={<Catalog/>}/>
+      <Route path='/games_catalog' element={<Catalog/>}/>
     </Routes>
   </>
   )
