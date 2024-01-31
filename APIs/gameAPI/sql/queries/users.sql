@@ -9,6 +9,9 @@ SELECT * FROM users;
 -- name: GetUserById :one
 SELECT * FROM users WHERE id=$1;
 
+-- name: GetUserByUsername :one
+SELECT * FROM users WHERE username=$1;
+
 -- name: UpdateUser :one
 UPDATE users SET username=$2, email=$3, password=$4
 WHERE id=$1
