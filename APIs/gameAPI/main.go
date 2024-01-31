@@ -63,6 +63,7 @@ func main() {
 
     // User Routes
     v1.Post("/create_account", apiCfg.handlerCreateUser)
+    v1.Post("/login", apiCfg.handlerlogin)
 
 	log.Fatal(app.Listen(":3006"))
 }
