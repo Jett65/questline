@@ -76,5 +76,3 @@ func (apiCfg *apiconfig) handlerlogin(c *fiber.Ctx) error {
     // Figure out the cookie stuff
     return c.JSON(jwt)
 }
-
-
