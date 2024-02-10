@@ -3,7 +3,6 @@ package main
 import (
 	"database/sql"
 	"os"
-	"strings"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v4"
@@ -24,14 +23,7 @@ func genJWT(key []byte, climes jwt.MapClaims) (string, error) {
 
 // middlewhere to authorize the user
 func isAuth(c *fiber.Ctx) error {
-    authHeader := string(c.Request().Header.Peek("Authorization"))
-    
-    splitAuthHeader := strings.Split(authHeader, " ")
-    if len(splitAuthHeader) != 2 || splitAuthHeader[0] != "Bearer" {
-        return fiber.NewError(400, "::::Header could not be parsed")
-    }
-
-    tokenString := splitAuthHeader[1]
+    tokenString := c.Cookies("key")
 
     parseToken, err := jwt.Parse(tokenString, func(t *jwt.Token) (interface{}, error) {
         return secret_key, nil
