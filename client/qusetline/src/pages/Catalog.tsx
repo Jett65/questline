@@ -37,7 +37,7 @@ function Catalog() {
 
     <div className="catalogGameDiv">
       {games.map((game) => (
-        <div key={game.id}>{game.name}</div>
+        <div key={game.id} className="gameDivs">{game.name}</div>
       ))}
     </div>
   </div>

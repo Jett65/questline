@@ -63,3 +63,13 @@
   text-transform: uppercase;
   text-decoration: none;
 }
+
+.catalogGameDiv{
+  display: flex;
+  flex-direction: row;
+  gap: 10;
+}
+
+.gameDivs{
+  background-color: rgba(112, 112, 112, 0.5);
+}
