@@ -6,6 +6,7 @@ import (
 
 	"github.com/Jett65/questline/APIs/gameAPI/internal/database"
 	"github.com/gofiber/fiber/v2"
+    // "github.com/gofiber/fiber/v2/middleware/encryptcookie"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
@@ -35,6 +36,20 @@ func (apiCfg *apiconfig) handlerCreateUser(c *fiber.Ctx) error {
 	if err != nil {
 		return fiber.NewError(404, fmt.Sprintf("::::Failed to create user::::"))
 	}
+ 
+    jwt, err := genJWT(secret_key, jwt.MapClaims{
+        "iss": "gameAPI", 
+        "sub": newUser.Username, 
+        "exp": time.Now().Add(time.Hour * 24).Unix(),
+    })
+
+    cookie := fiber.Cookie {   
+        Name: "key",
+        Value: jwt,
+        Expires: time.Now().Add(time.Hour * 24),
+    } 
+
+    c.Cookie(&cookie)
 
 	return c.JSON(payload)
 }
@@ -74,5 +89,18 @@ func (apiCfg *apiconfig) handlerlogin(c *fiber.Ctx) error {
     }
 
     // Figure out the cookie stuff
-    return c.JSON(jwt)
+    cookie := fiber.Cookie {
+        Name: "key",
+        Value: jwt,
+        Expires: time.Now().Add(time.Hour * 24),
+    }
+
+    c.Cookie(&cookie)
+
+    return c.JSON("Logged in")
+}
+
+// This handler is a temporary handler to check if the token stuff works
+func (apiCfg *apiconfig) isLoggedIn (c *fiber.Ctx) error {
+    return c.JSON("The user is logged in")
 }

@@ -64,6 +64,7 @@ func main() {
     // User Routes
     v1.Post("/create_account", apiCfg.handlerCreateUser)
     v1.Post("/login", apiCfg.handlerlogin)
+    v1.Get("/is_logged_in", isAuth, apiCfg.isLoggedIn)
 
 	log.Fatal(app.Listen(":3006"))
 }
