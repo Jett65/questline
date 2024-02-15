@@ -35,7 +35,7 @@ function Catalog() {
     <h1>Games Catalog!</h1>
     <h3>Check out our Games</h3>
 
-    <div className="catalogGameDiv">
+    <div className="me">
       {games.map((game) => (
         <div key={game.id} className="gameDivs">
           <h2 className="gameName">{game.name}</h2>
