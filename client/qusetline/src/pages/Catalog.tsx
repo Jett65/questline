@@ -35,11 +35,12 @@ function Catalog() {
     <h1>Games Catalog!</h1>
     <h3>Check out our Games</h3>
 
-    <div className="me">
+    <div className="catalogGameDiv">
       {games.map((game) => (
         <div key={game.id} className="gameDivs">
           <h2 className="gameName">{game.name}</h2>
           <button className="playButton">Play</button>
+          <img className="gameImg" src={game.image_url} alt={game.name} />
         </div>
       ))}
     </div>
