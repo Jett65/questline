@@ -53,8 +53,9 @@
 }
 
 .nav-links{
-  display: flex;
-  flex-direction: row;
+  /* display: flex;
+  flex-direction: row; */
+  width: 10svw;
   margin-right: 50px;
   margin-left: 10px;
   right: 0;
@@ -105,4 +106,36 @@
 .gameName{
   color: white;
   font-size: 1rem;
+}
+
+.signup-login-header{
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.signup-login-link{
+  margin-top: 5px;
+  margin-bottom: 35px;
+}
+
+.signup-login-div{
+  width: 50svw;
+  color: white;
+  background-color: rgba(33, 1, 85, .5);
+  border-radius: 40;
+}
+
+.signup-login-div > form > label{
+  text-align: left;
+  color: white;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+}
+
+.signup-login-div > form > input{
+  width: 15svw;
+  border-style: hidden;
+  border-radius: 40;
+  background-color: #2c1042 ;
+  margin-bottom: 10px;
 }
