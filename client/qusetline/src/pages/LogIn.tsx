@@ -8,16 +8,19 @@ function LogIn() {
   <div>
     <div className="signup-login-div">
       <br />
-      <h1 className="signup-login-header">Login</h1>
+      <h1 className="signup-login-header">Log In</h1>
       <h5 className="signup-login-link">Don't have an account? <Link to='/signup' title="Log In!" className="">Sign Up</Link></h5>
       <form>
         <label htmlFor="email">Email:</label>
         <br />
-        <input type="text" id="email" name="email"/>
+        <input type="email" id="email" name="email"/>
         <br />
         <label htmlFor="password">Password:</label>
         <br />
-        <input type="text" id="password" name="password"/>
+        <input type="password" id="password" name="password"/>
+        <br />
+        <br />
+        <button className="signup-login-button">LOG IN</button>
         <br />
         <br />
       </form>

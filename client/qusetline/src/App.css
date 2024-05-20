@@ -116,13 +116,18 @@
 .signup-login-link{
   margin-top: 5px;
   margin-bottom: 35px;
+  color: rgb(74, 14, 102);
+  font-size: 12pt;
 }
 
 .signup-login-div{
   width: 50svw;
+  border-radius: 10px;
   color: white;
-  background-color: rgba(33, 1, 85, .5);
-  border-radius: 40;
+  background-color: rgba(180, 42, 244, .75);
+  border-width: 10px;
+  border-style: solid;
+  border-color:  rgba(109, 26, 148, 0.75);
 }
 
 .signup-login-div > form > label{
@@ -134,8 +139,59 @@
 
 .signup-login-div > form > input{
   width: 15svw;
-  border-style: hidden;
-  border-radius: 40;
-  background-color: #2c1042 ;
+  height: 3svh;
+  border-style: solid;
+  border-width: 1;
+  border-color: white;
+  border-radius: 40px;
+  background-color: rgb(197, 134, 226);
   margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.signup-login-button{
+  color: rgb(111, 21, 153);
+  font-weight: 800;
+  background-color: white;
+  border: none;
+}
+
+.signup-login-button:hover{
+  color: rgb(43, 8, 59);
+  background-color: rgb(111, 21, 153);
+  border: none;
+}
+
+.home-header{
+  margin-bottom: 5px;
+}
+
+#home-catalog-div{
+  position: absolute;
+  width: 100%;
+  height: 90%;
+  left: 0;
+  margin-top: 40svh;
+  background-color: white;
+}
+
+.home-catalog-link-header{
+  font-size: 65pt;
+}
+
+.home-to-catalog-link{
+  padding: 15px;
+  font-weight: 800;
+  background-color: white;
+  color: rgb(111, 21, 153);
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgb(90, 17, 124); 
+  border-radius: 50px;
+  text-decoration: none;
+}
+
+.home-to-catalog-link:hover{
+  color: rgb(43, 8, 59);
+  background-color: rgb(111, 21, 153);
 }

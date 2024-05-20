@@ -17,11 +17,14 @@ function SignUp() {
         <br />
         <label htmlFor="email">Email:</label>
         <br />
-        <input type="text" id="email" name="email"/>
+        <input type="email" id="email" name="email"/>
         <br />
         <label htmlFor="password">Password:</label>
         <br />
-        <input type="text" id="password" name="password"/>
+        <input type="password" id="password" name="password"/>
+        <br />
+        <br />
+        <button className="signup-login-button">SIGN UP</button>
         <br />
         <br />
       </form>
