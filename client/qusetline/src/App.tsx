@@ -1,5 +1,6 @@
 // import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import './App.css'
 import Catalog from './pages/Catalog.tsx'
 import NavBar from './components/NavBar.tsx'
@@ -10,6 +11,7 @@ import GameModes from './pages/Game Modes.tsx'
 
 
 function App() {
+  const [token, setToken] = useState("");
 
   return (
   <>
@@ -18,7 +20,7 @@ function App() {
       <Route path='/' element={<Home/>}/>
       <Route path='/games_catalog' element={<Catalog/>}/>
       <Route path='/modes' element={<GameModes/>}/>
-      <Route path='/signup' element={<SignUp/>}/>
+      <Route path='/signup' element={<SignUp setToken={setToken}/>}/>
       <Route path='/login' element={<LogIn/>}/>
     </Routes>
   </>
