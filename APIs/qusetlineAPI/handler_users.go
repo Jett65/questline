@@ -4,9 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Jett65/questline/APIs/gameAPI/internal/database"
+	"github.com/Jett65/questline/APIs/qusetlineAPI/internal/database"
 	"github.com/gofiber/fiber/v2"
-    // "github.com/gofiber/fiber/v2/middleware/encryptcookie"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
