@@ -21,7 +21,7 @@ function SignUp() {
         <br />
         <label htmlFor="password">Password:</label>
         <br />
-        <input type="password" id="password" name="password"/>
+        <input type="password" id="password" name="password" />
         <br />
         <br />
         <button className="signup-login-button">SIGN UP</button>
