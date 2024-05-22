@@ -1,4 +1,3 @@
-import React from "react"
 import { useEffect, useState } from "react"
 
 function Catalog() {
@@ -37,7 +36,12 @@ function Catalog() {
 
     <div className="catalogGameDiv">
       {games.map((game) => (
-        <div key={game.id} className="gameDivs">{game.name}</div>
+        <div key={game.id} className="gameDivs">
+          <h2 className="gameName">{game.name}</h2>
+          <button className="playButton">Play</button>
+          <img className="gameImg" src={game.image_url} alt={game.name} />
+        </div>
+
       ))}
     </div>
   </div>

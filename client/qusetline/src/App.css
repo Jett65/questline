@@ -43,23 +43,28 @@
 
 .nav-bar{
   position: fixed;
-  left: 0;
-  top: 0;
-  width: 100svw;
-  height: 10svh;
-  overflow-x: hidden;
-  background-color: white;
+  left: 2.5%;
+  top: 2.5%;
+  border-radius: 20px;
+  width: 95svw;
+  height: 7svh;
+  background-color: rgba(76, 10, 116, 71);
+  z-index: 2;
 }
 
 .nav-links{
-  display: flex;
-  flex-direction: row;
-  right: 1;
-  top: 2;
-  color: black;
-  font-size: 20pt;
+  /* display: flex;
+  flex-direction: row; */
+  width: 10svw;
+  margin-right: 50px;
+  margin-left: 10px;
+  right: 0;
+  margin-top: 1.25svh;
+  color: rgb(255, 255, 255);
+  font-size: 17pt;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: lighter;
+  font-weight: 100;
+
   text-transform: uppercase;
   text-decoration: none;
 }
@@ -67,9 +72,128 @@
 .catalogGameDiv{
   display: flex;
   flex-direction: row;
-  gap: 10;
+  flex-wrap: wrap;
+  gap: 30px;
+  width: 50svw;
+  left: 10%;
+  top: 20%;
 }
 
 .gameDivs{
-  background-color: rgba(112, 112, 112, 0.5);
+  position: relative;
+  background-color: rgba(49, 49, 49, 0.5);
+  width: 10svw;
+  border-top-left-radius: 5;
+  border-top-right-radius: 5;
+}
+
+.playButton{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  color: rgb(5, 177, 5);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-top: 2px;
+}
+
+.gameImg{
+  max-width: 8svw;
+  border-radius: 5px;
+  padding-bottom: 10px;
+}
+
+.gameName{
+  color: white;
+  font-size: 1rem;
+}
+
+.signup-login-header{
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.signup-login-link{
+  margin-top: 5px;
+  margin-bottom: 35px;
+  color: rgb(74, 14, 102);
+  font-size: 12pt;
+}
+
+.signup-login-div{
+  width: 50svw;
+  border-radius: 10px;
+  color: white;
+  background-color: rgba(180, 42, 244, .75);
+  border-width: 10px;
+  border-style: solid;
+  border-color:  rgba(109, 26, 148, 0.75);
+}
+
+.signup-login-div > form > label{
+  text-align: left;
+  color: white;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+}
+
+.signup-login-div > form > input{
+  width: 15svw;
+  height: 3svh;
+  border-style: solid;
+  border-width: 1;
+  border-color: white;
+  border-radius: 40px;
+  background-color: rgb(197, 134, 226);
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.signup-login-button{
+  color: rgb(111, 21, 153);
+  font-weight: 800;
+  background-color: white;
+  border: none;
+}
+
+.signup-login-button:hover{
+  color: rgb(43, 8, 59);
+  background-color: rgb(111, 21, 153);
+  border: none;
+}
+
+.home-header{
+  margin-bottom: 5px;
+}
+
+#home-catalog-div{
+  position: absolute;
+  width: 100%;
+  height: 90%;
+  left: 0;
+  margin-top: 40svh;
+  background-color: white;
+}
+
+.home-catalog-link-header{
+  font-size: 65pt;
+}
+
+.home-to-catalog-link{
+  padding: 15px;
+  font-weight: 800;
+  background-color: white;
+  color: rgb(111, 21, 153);
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgb(90, 17, 124); 
+  border-radius: 50px;
+  text-decoration: none;
+}
+
+.home-to-catalog-link:hover{
+  color: rgb(43, 8, 59);
+  background-color: rgb(111, 21, 153);
+
 }
