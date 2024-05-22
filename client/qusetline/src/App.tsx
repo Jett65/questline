@@ -21,7 +21,7 @@ function App() {
       <Route path='/games_catalog' element={<Catalog/>}/>
       <Route path='/modes' element={<GameModes/>}/>
       <Route path='/signup' element={<SignUp setToken={setToken}/>}/>
-      <Route path='/login' element={<LogIn/>}/>
+      <Route path='/login' element={<LogIn setToken={setToken}/>}/>
     </Routes>
   </>
   )
