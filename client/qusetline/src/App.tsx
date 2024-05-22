@@ -22,6 +22,7 @@ function App() {
       <Route path='/modes' element={<GameModes/>}/>
       <Route path='/signup' element={<SignUp setToken={setToken}/>}/>
       <Route path='/login' element={<LogIn setToken={setToken}/>}/>
+
     </Routes>
   </>
   )

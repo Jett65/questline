@@ -1,4 +1,3 @@
-// import React from "react"
 import { useEffect, useState } from "react"
 
 function Catalog() {
@@ -42,6 +41,7 @@ function Catalog() {
           <button className="playButton">Play</button>
           <img className="gameImg" src={game.image_url} alt={game.name} />
         </div>
+
       ))}
     </div>
   </div>
