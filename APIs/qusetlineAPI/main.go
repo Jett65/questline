@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/Jett65/questline/APIs/gameAPI/internal/database"
+	"github.com/Jett65/questline/APIs/qusetlineAPI/internal/database"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/joho/godotenv"

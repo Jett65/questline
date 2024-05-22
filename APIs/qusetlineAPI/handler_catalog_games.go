@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/Jett65/questline/APIs/gameAPI/internal/database"
+	"github.com/Jett65/questline/APIs/qusetlineAPI/internal/database"
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 )

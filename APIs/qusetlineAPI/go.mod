@@ -1,4 +1,4 @@
-module github.com/Jett65/questline/APIs/gameAPI
+module github.com/Jett65/questline/APIs/qusetlineAPI
 
 go 1.21.5
 

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/Jett65/questline/APIs/gameAPI/internal/database"
+	"github.com/Jett65/questline/APIs/qusetlineAPI/internal/database"
 	"github.com/google/uuid"
 )
 
