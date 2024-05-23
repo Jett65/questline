@@ -1,6 +1,6 @@
 // import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState} from 'react'
 import './App.css'
 import Catalog from './pages/Catalog.tsx'
 import NavBar from './components/NavBar.tsx'

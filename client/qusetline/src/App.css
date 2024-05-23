@@ -197,3 +197,25 @@
   background-color: rgb(111, 21, 153);
 
 }
+
+span{
+  color: red;
+  display: none;
+}
+
+#username:invalid[data-focused = "true"] ~ span[id = "username"]{
+  display: block;
+}
+
+#email:invalid[data-focused = "true"] ~ span[id="email"]{
+  display: block;
+}
+
+#password:invalid[data-focused = "true"] ~ span[id="password"]{
+  display: block;
+}
+
+.incorrect-info-header{
+  color: red;
+  text-decoration: underline;
+}
