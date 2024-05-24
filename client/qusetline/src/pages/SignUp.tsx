@@ -19,7 +19,7 @@ function SignUp({setToken}:{setToken:any}) {
           Accept: 'application/json',
           'Content-Type':'application/json',
         },
-        credentials: "same-origin",
+        credentials: "include",
         body: JSON.stringify({
           username,
           email,
