@@ -40,6 +40,8 @@ func main() {
 
     v1.Use(cors.New((cors.Config{
         AllowOrigins: "http://localhost:5173",
+        AllowCredentials: true,
+        ExposeHeaders: "data, etag", 
     })))
 
 	v1.Get("/health", func(c *fiber.Ctx) error {
