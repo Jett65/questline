@@ -91,6 +91,7 @@ func (apiCfg *apiconfig) handlerlogin(c *fiber.Ctx) error {
     cookie := fiber.Cookie {
         Name: "key",
         Value: jwt,
+        SameSite: "http://localhost:5173/",
         Expires: time.Now().Add(time.Hour * 24),
     }
 
