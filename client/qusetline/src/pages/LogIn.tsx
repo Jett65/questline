@@ -1,13 +1,12 @@
 // import React from "react"
 import { Link } from "react-router-dom"
 import React, { useState } from "react"
-import { useNavigate } from "react-router-dom"
+
 
 function LogIn({setToken}:{setToken:any}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate()
 
    
 
@@ -28,11 +27,9 @@ function LogIn({setToken}:{setToken:any}) {
           password
         })
       });
-      console.log(document.cookie)
       const result = await response.json();
-      console.log(result)
-      setToken(result.token);
-      navigate('/');
+      let resultToken = document.cookie.slice(4);
+      setToken(resultToken)
     } catch(err) {
       console.error(err);
       setError("Username or Password is incorrect")

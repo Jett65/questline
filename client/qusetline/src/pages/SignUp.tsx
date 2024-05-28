@@ -1,5 +1,5 @@
 // import React from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, } from "react-router-dom"
 import React, {  useState } from "react"
 
 function SignUp({setToken}:{setToken:any}) {
@@ -9,7 +9,6 @@ function SignUp({setToken}:{setToken:any}) {
   const [focusedUsername, setFocusedUsername] = useState(false);
   const [focusedEmail, setFocusedEmail] = useState(false);
   const [focusedPassword, setFocusedPassword] = useState(false);
-  const navigate = useNavigate()
   const errorMessage = [
     "*Username must be 4-16 characters long with no special characters, letters and numbers only*",
     "*Must be valid Email Address*",
@@ -41,11 +40,9 @@ function SignUp({setToken}:{setToken:any}) {
           password
         })
       });
-      console.log(response.headers)
       const result = await response.json();
-      console.log(result.headers);
-      setToken(result.token)
-      navigate('/');
+      let resultToken = document.cookie.slice(4);
+      setToken(resultToken)
     }
     catch(err){
       console.error(err);
