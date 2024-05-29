@@ -15,8 +15,17 @@ function App() {
   const [token, setToken] = useState("");
   const navigate = useNavigate();
 
+  function isSignedIn(token:string){
+    if (!token){
+      if(document.cookie){
+        setToken(document.cookie.slice(4))
+      }
+    }
+  };
+
   useEffect(() => {
     navigate("/");
+    isSignedIn(token)
   }, [token])
 
   return (
