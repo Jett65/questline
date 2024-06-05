@@ -2,7 +2,7 @@
 import { Link, } from "react-router-dom"
 import React, {  useState } from "react"
 
-function SignUp({setToken}:{setToken:any}) {
+function SignUp(props:any) {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -41,8 +41,9 @@ function SignUp({setToken}:{setToken:any}) {
         })
       });
       const result = await response.json();
+      props.setAccount(result)
       let resultToken = document.cookie.slice(4);
-      setToken(resultToken)
+      props.setToken(resultToken)
     }
     catch(err){
       console.error(err);

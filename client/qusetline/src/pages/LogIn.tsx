@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import React, { useState } from "react"
 
 
-function LogIn({setToken}:{setToken:any}) {
+function LogIn(props:any) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -28,8 +28,9 @@ function LogIn({setToken}:{setToken:any}) {
         })
       });
       const result = await response.json();
+      console.log(result)
       let resultToken = document.cookie.slice(4);
-      setToken(resultToken)
+      props.setToken(resultToken)
     } catch(err) {
       console.error(err);
       setError("Username or Password is incorrect")

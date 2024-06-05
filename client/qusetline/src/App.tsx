@@ -13,6 +13,7 @@ import MyAccount from './pages/MyAccount.tsx'
 
 function App() {
   const [token, setToken] = useState("");
+  const [account, setAccount] = useState([])
   const navigate = useNavigate();
 
   function isSignedIn(token:string){
@@ -26,6 +27,7 @@ function App() {
   useEffect(() => {
     navigate("/");
     isSignedIn(token)
+    console.log(account)
   }, [token])
 
   return (
@@ -37,12 +39,12 @@ function App() {
       <Route path='/modes' element={<GameModes/>}/>
       {token ?
         <>
-          <Route path='/myaccount' element={<MyAccount/>}/>
+          <Route path='/myaccount' element={<MyAccount account={account}/>}/>
         </>
       :
         <>
-          <Route path='/signup' element={<SignUp setToken={setToken}/>}/>
-          <Route path='/login' element={<LogIn setToken={setToken}/>}/>
+          <Route path='/signup' element={<SignUp setToken={setToken} setAccount={setAccount} />}/>
+          <Route path='/login' element={<LogIn setToken={setToken} />}/>
         </>
       }
     </Routes>
