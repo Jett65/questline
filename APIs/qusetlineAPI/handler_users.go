@@ -97,7 +97,14 @@ func (apiCfg *apiconfig) handlerlogin(c *fiber.Ctx) error {
 
     c.Cookie(&cookie)
 
-    return c.JSON("Logged in")
+    payload := User{
+        ID: dbUser.ID,
+        Username: dbUser.Username,
+        Email: dbUser.Email,
+        Password: "",
+    } 
+
+    return c.JSON(payload)
 }
 
 func (apiCfg *apiconfig) handlerDeleteUser(c *fiber.Ctx) error {
