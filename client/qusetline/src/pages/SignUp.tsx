@@ -25,7 +25,6 @@ function SignUp(props:any) {
   async function handleSubmit (event:React.FormEvent) {
     event.preventDefault();
     let api = 'http://localhost:3006/api/v1'
-
     try{
       const response = await fetch(`${api}/create_account`, {
         method:'POST',

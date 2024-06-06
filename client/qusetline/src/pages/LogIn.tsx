@@ -28,7 +28,12 @@ function LogIn(props:any) {
         })
       });
       const result = await response.json();
-      console.log(result)
+      const accountCookie = {
+        id: result.id,
+        username: result.username,
+        email: result.email
+      }
+      props.setAccount(accountCookie)
       let resultToken = document.cookie.slice(4);
       props.setToken(resultToken)
     } catch(err) {

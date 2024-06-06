@@ -44,7 +44,7 @@ function App() {
       :
         <>
           <Route path='/signup' element={<SignUp setToken={setToken} setAccount={setAccount} />}/>
-          <Route path='/login' element={<LogIn setToken={setToken} />}/>
+          <Route path='/login' element={<LogIn setToken={setToken} setAccount={setAccount}/>}/>
         </>
       }
     </Routes>
