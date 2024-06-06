@@ -41,7 +41,12 @@ function SignUp(props:any) {
         })
       });
       const result = await response.json();
-      props.setAccount(result)
+      const accountCookie = {
+        id: result.id,
+        username: result.username,
+        email: result.email
+      }
+      props.setAccount(accountCookie)
       let resultToken = document.cookie.slice(4);
       props.setToken(resultToken)
     }
